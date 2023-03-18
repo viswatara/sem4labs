@@ -1,0 +1,29 @@
+ -create table Employee (EmpNo number(6), EmpName varchar(20), Gender varchar(3),Salary number(6), Address varchar(50), DNo number(5));
+-create table Department (DeptNo number (5) , DeptName varchar(20), Location varchar(20), );
+
+1.create table Employee (EmpNo number(5) primary key, EmpName varchar(20) not null, Gender varchar(3) not null,Salary number(6) not null, Address varchar(50) not null, DNo number(5), constraint chg check(Gender in('M','F')));
+2.create table Department (DeptNo number (5) primary key, DeptName varchar(20) unique, Location varchar(20) );
+3.alter table Employee add constraint FK_DNo foreign key(DNo) references Department(DeptNo);
+4.insert into Department values(&DeptNo,&DeptName,&Location);
+ insert into Employee values(&EmpNo, &EmpName,&Gender, &Salary, &Address, &DNo);  
+5.insert into Employee values(&EmpNo, &EmpName,&Gender, &Salary, &Address, &DNo); 
+enyter wrong deptno
+6.delete from Department where DeptNo=1;
+7.alter table Employee drop constraint FK_DNo;
+alter table Employee add constraint FK_DNo foreign key(DNo) references Department(DeptNo) on delete cascade;
+8.alter table Employee drop column Salary;
+ alter table Employee add constraint SalC Salary number(6) default(10000);
+
+9.select name, dept_name from Student;
+10.select * from Instructor;
+11.select title from Course where credits=3;
+12.select * from Takes where ID=12345; 
+select Course.course_id, Course.title from Course join Takes on Course.course_id=Takes.course_id where Takes.id=12345;
+13.select * from Instructor where salary between 40000 and 90000;
+14. select Instructor.id from Instructor where Instructor.id not in(select Teaches.id from Teaches);
+15. select Student.name, Course.title, Takes.year from Section join Course on Course.course_id=Section.course_id join Takes on Takes.Course_id=Section.course_id join Student on Student.id=Takes.id where Section.room_number=100;
+16.select Student.name,Takes.course_id, Course.title as cname from Takes join Student on Student.id=Takes.id join Course on Course.course_id=Takes.course_id where takes.year=2009;
+17.
+18.select name from Instructor where lower(dept_name) like '%ch%';
+19. select name, length(name) from Student;
+20. select dept_name 
