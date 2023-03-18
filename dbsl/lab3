@@ -1,0 +1,117 @@
+1.  select course_id from Takes where semester='Fall' and year=2009 UNION select course_id from Takes where semester='Spring' and year=2010;
+2.select course_id from Takes where semester='Fall' and year=2009 INTERSECT select course_id from Takes where semester='Spring' and year=2010;
+COURSE_I
+--------
+CS-101
+
+3.select course_id from Takes where semester='Fall' and year=2009 MINUS select course_id from Takes where semester='Spring' and year=2010;
+COURSE_I
+--------
+CS-347
+PHY-101
+4.select course_id from Course minus select course_id from Takes;
+COURSE_I
+--------
+BIO-399
+5. select Takes.course_id from Takes where Takes.semester='Fall' and Takes.year=2009 and Takes.course_id in(select Takes.course_id from Takes where Takes.semester='Spring' and Takes.year=2010);
+COURSE_I
+--------
+CS-101
+CS-101
+CS-101
+CS-101
+CS-101
+CS-101
+6. select count(Takes.course_id) from Takes where Takes.course_id in(select Teaches.course_id from Teaches where Teaches.id=10101);
+COUNT(TAKES.COURSE_ID)
+----------------------
+                    11
+7.select Takes.course_id from Takes where Takes.semester='Fall' and Takes.year=2009 and Takes.course_id not in(select Takes.course_id from Takes where Takes.semester='Spring' and Takes.year=2010);
+COURSE_I
+--------
+CS-347
+CS-347
+PHY-101
+8.select Student.name from Student where Student.name in(select Instructor.name from Instructor);
+NAME
+--------------------
+Brandt
+
+9.select name from Instructor where salary>some(select salary from In
+structor where dept_name='Biology');
+NAME
+--------------------
+Einstein
+Brandt
+Wu
+Gold
+Kim
+Singh
+Katz
+
+10.select name from Instructor where salary>all(select salary from In
+structor where dept_name='Biology');
+NAME
+--------------------
+Katz
+Singh
+Kim
+Gold
+Wu
+Brandt
+Einstein
+
+11. select dept_name, avg(salary) from Instructor group by dept_name having avg(salary)>=all( select avg(salary) from Instructor group by dept_name);
+
+DEPT_NAME            AVG(SALARY)
+-------------------- -----------
+Physics                    91000
+12.select dept_name from Department where budget<=all(select avg(salary)from Instructor );
+
+DEPT_NAME
+--------------------
+History
+Physics
+13. select course_id from Teaches S where semester='Fall' and year=2009 and exists (select course_id from Teaches T where semester='Spring' and year=2010 and S.course_id=T.course_id);
+
+COURSE_I
+--------
+CS-101
+14.select unique(id) from Takes S where exists (select course_id from Course T where dept_name='Biology' and S.course_id=T.course_id);
+
+ID
+-----
+98988
+15.select course_id from Teaches T where year=2009 and 1>=(select count(course_id) from Teaches C where year=2009 and T.course_id=C.course_id);
+
+COURSE_I
+--------
+CS-101
+CS-347
+PHY-101
+BIO-101
+EE-181
+16. select unique(id) from Takes where course_id like 'CS%' and 2<=(select count(id) from Takes where course_id like 'CS%');
+
+ID
+-----
+00128
+12345
+45678
+54321
+76543
+98765
+
+17. select avg(salary),dept_name from Instructor group by dept_name ha
+ving avg(salary)>42000;
+
+AVG(SALARY) DEPT_NAME
+----------- --------------------
+      80000 Elec. Eng.
+      91000 Physics
+ 77333.3333 Comp. Sci.
+      85000 Finance
+      72000 Biology
+      61000 History
+
+
