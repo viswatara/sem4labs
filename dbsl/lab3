@@ -115,3 +115,23 @@ AVG(SALARY) DEPT_NAME
       61000 History
 
 
+18.
+create view all_courses as (select sec_id,building, room_number from Section where course_id like '%PHY%' and year=2009 and semester='Fall');
+19. select * from all_courses;
+SEC_ID   BUILDING        ROOM_NU
+-------- --------------- -------
+1        Watson          100
+20.create view department_total_salary as(select dept_name, sum(salary) as total from Instructor group by dept_name);
+ select * from department_total_salary;
+
+DEPT_NAME                 TOTAL
+-------------------- ----------
+Elec. Eng.                80000
+Physics                  182000
+Comp. Sci.               232000
+Finance                  170000
+Biology                   72000
+Music                     40000
+History                  122000
+
+7 rows selected.
