@@ -1,0 +1,125 @@
+1.select course_id, count(id) from Takes group by course_id;
+
+COURSE_I  COUNT(ID)
+-------- ----------
+HIS-351           1
+EE-181            1
+CS-101            7
+CS-347            2
+FIN-201           1
+CS-319            2
+BIO-101           1
+PHY-101           1
+CS-315            2
+CS-190            2
+MU-199            1
+
+COURSE_I  COUNT(ID)
+-------- ----------
+BIO-301           1
+
+12 rows selected.
+2.select dept_name from Student having count(id)>3 group by dept_name;
+
+DEPT_NAME
+--------------------
+Comp. Sci.
+3.select dept_name, count(course_id) from Course group by dept_name;
+
+DEPT_NAME            COUNT(COURSE_ID)
+-------------------- ----------------
+Elec. Eng.                          1
+Physics                             1
+Comp. Sci.                          5
+Finance                             1
+Biology                             3
+History                             1
+Music                               1
+
+7 rows selected.
+4.
+select dept_name, avg(salary) from Instructor group by dept_name having avg(salary)>42000;
+
+DEPT_NAME            AVG(SALARY)
+-------------------- -----------
+Elec. Eng.                 80000
+Physics                    91000
+Comp. Sci.            77333.3333
+Finance                    85000
+Biology                    72000
+History                    61000
+
+6 rows selected.
+5. select count(sec_id), sec_id from Takes where year=2009 and semester='Spring' group by sec_id;
+
+COUNT(SEC_ID) SEC_ID
+------------- --------
+            1 1
+            2 2
+6. select course_id from Prereq order by course_id asc;
+
+COURSE_I
+--------
+BIO-301
+BIO-399
+CS-190
+CS-315
+CS-319
+CS-347
+EE-181
+7.> select id,name,dept_name, salary from Instructor order by salary desc;
+
+ID    NAME                 DEPT_NAME                SALARY
+----- -------------------- -------------------- ----------
+22222 Einstein             Physics                   95000
+83821 Brandt               Comp. Sci.                92000
+12121 Wu                   Finance                   90000
+33456 Gold                 Physics                   87000
+98345 Kim                  Elec. Eng.                80000
+76543 Singh                Finance                   80000
+45565 Katz                 Comp. Sci.                75000
+76766 Crick                Biology                   72000
+10101 Srinivasan           Comp. Sci.                65000
+58583 Califieri            History                   62000
+32343 El Said              History                   60000
+
+ID    NAME                 DEPT_NAME                SALARY
+----- -------------------- -------------------- ----------
+15151 Mozart               Music                     40000
+
+12 rows selected.
+8. select max(value) from( select sum(salary) as value from Instructor group by dept_name)rel_name;
+
+MAX(VALUE)
+----------
+    232000
+9.
+select avg(value) from( select avg(salary) as value from Instructor group by dept_name having avg(salary)>42000)rela_name;
+
+AVG(VALUE)
+----------
+77722.2222
+10.
+select max(value) from ( select count(sec_id)as value from Takes where year=2010 and semester='Spring' group by sec_id)rel_three;
+
+MAX(VALUE)
+----------
+         7
+11.select i.name from Instructor i where i.id in(select t.id from Teaches t where t.course_id in(select ta.course_id from Student s, Takes ta where s.id=ta.id and s.dept_name='Comp. Sci.'));
+
+NAME
+--------------------
+Srinivasan
+Katz
+Brandt
+
+12. select avg(value) from( select avg(salary) as value from Instructor having avg(salary)>50000 and count(dept_name)>2 group by dept_name);
+
+AVG(VALUE)
+----------
+77333.3333
+13.with maxbud(val) as select( max(budget) from Department) select d.dept_name, d.budget from Department d, maxbud m where d.budget=m.val;
+DEPT_NAME                BUDGET
+-------------------- ----------
+Finance                  120000
+14.
