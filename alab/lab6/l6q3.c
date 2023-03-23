@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
-
+#include<stdlib.h>
+int opcount=0;
 void merge(int arr[], int left, int mid, int right) {
-
+   
     if (left >= right || arr == NULL)
         return;
 
@@ -28,19 +28,22 @@ void merge(int arr[], int left, int mid, int right) {
     }
 
     while (j <= right) {
-        finalArr[ind++] = arr[j];
+        finalArr[ind++] = arr[j];                                                                                                             
         j++;
     }
 
     ind = 0;
-    for (i = left; i <= right; i++)
+    for (i = left; i <= right; i++){
         arr[i] = finalArr[ind++];
+        ++opcount;
+    }
+
 
     free(finalArr);
 }
 
 void mergeSort(int arr[], int left, int right) {
-
+    ++opcount;
     if (arr == NULL || left >= right)
         return;
 
@@ -66,7 +69,8 @@ void main() {
         scanf("%d", &arr[i]);
     }
     printf("Sorted array: ");
-    mergeSort(arr, 0, n);
+    mergeSort(arr, 0, n-1);
     for (int i = 0; i < n; i++)
         printf("%d ", arr[i]);
+    printf("opcount is: %d\n",opcount);
 }
