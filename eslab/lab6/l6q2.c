@@ -27,3 +27,5 @@ int main(void)
 			}
 	}
 }
+
+//press sw2 while clicking on start so that upcounter runs, press rest afterwards for downcounter
