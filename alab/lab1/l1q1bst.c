@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+int flag=0;
 typedef struct node *bst;
 struct node{
 	int data;
@@ -31,7 +32,8 @@ bst createBST(bst root,int item){
 	}
 	
 	else {
-		printf("Duplicates not allowed\n");
+		printf("Key found\n");
+		flag=1;
 		return root;
 
 	}
@@ -72,11 +74,13 @@ int main(){
 	scanf("%d",&item);
 	root=newnode(item);
 	
-	while(item!=-1){
-		printf("Enter element(-1 to stop)");
+	while(item!=-1&&flag==0){
+		printf("Enter key(-1 to stop)");
 		scanf("%d",&item);
 		createBST(root,item);
 	}
+	int key;
+	
 	printf("Inorder traversal is :");
 	inorder(root);
 	printf("\nPreorder traversal is:");
@@ -85,3 +89,4 @@ int main(){
 	postorder(root);
 	return 0;
 }
+
