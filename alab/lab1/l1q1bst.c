@@ -79,7 +79,7 @@ int main(){
 		scanf("%d",&item);
 		createBST(root,item);
 	}
-	int key;
+	
 	
 	printf("Inorder traversal is :");
 	inorder(root);
