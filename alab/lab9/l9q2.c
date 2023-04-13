@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+int comparisions=0;
 void initialize(int **hash_table,int n)
 {
     for(int i=0;i<n;i++)
@@ -41,15 +42,17 @@ void search(int **hash_table,int n,int searchele)
     int i = searchele % n;
     for(int j=0;j<n;j++)
     {
+        comparisions++;
         if(hash_table[i][j] == searchele)
         {
-            printf("\nElement found");
-            return;
+            printf("Element found. Comparisions: %d ",comparisions);
+           return;
         }
-    }
-    printf("\nElement not found");
-}
 
+    }
+    printf("Element not found. Comparisions:%d",comparisions);
+    
+}
 int main()
 {
     int n,searchele;
