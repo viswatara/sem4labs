@@ -74,4 +74,5 @@ int main()
     printf("The hash table is:\n");
     Open_Hashing(arr,hash_table,n);
     search(hash_table,n,searchele);
+    return 0;
 }
