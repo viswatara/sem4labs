@@ -43,22 +43,22 @@ void search(int **hash_table,int n,int searchele)
     {
         if(hash_table[i][j] == searchele)
         {
-            printf("element found");
+            printf("\nElement found");
             return;
         }
     }
-    printf("element not found");
+    printf("\nElement not found");
 }
 
 int main()
 {
     int n,searchele;
-    printf("enter the mod function:");
+    printf("Enter the mod function:");
     scanf("%d",&n);
 
     int *arr = (int*)malloc(n*sizeof(int));
     
-    printf("\nenter the elements:");
+    printf("\nEnter the elements:");
     for(int i=0;i<n;i++)
     {
         scanf("%d",&arr[i]);
