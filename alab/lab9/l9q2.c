@@ -13,7 +13,7 @@ void initialize(int **hash_table,int n)
 
 }
 
-void Open_Hashing(int *arr,int **hash_table,int n)
+void openHashing(int *arr,int **hash_table,int n)
 {
     initialize(hash_table,n);
     int m = n;
@@ -72,7 +72,7 @@ int main()
         hash_table[i] = (int*)malloc(n*sizeof(int));
     }
     printf("The hash table is:\n");
-    Open_Hashing(arr,hash_table,n);
+    openHashing(arr,hash_table,n);
     search(hash_table,n,searchele);
     return 0;
 }
