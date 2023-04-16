@@ -5,7 +5,7 @@ unsigned int arr[4]={0,0,0,0};
 unsigned int i,j;
 int main(){
 	LPC_GPIO0->FIODIR|=0xFF0;//because cna p0.4 to p0.11 are output pins
-	LPC_GPIO1->FIODIR|=0xF<<23;0xF<<23;//because cnb p1.23 to p1.26 are output pins
+	LPC_GPIO1->FIODIR|=0xF<<23;//because cnb p1.23 to p1.26 are output pins
 	while(1){
 		for(arr[3]=0;arr[3]<10;arr[3]++)
 			for(arr[2]=0;arr[2]<10;arr[2]++)
